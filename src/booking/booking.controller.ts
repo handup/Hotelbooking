@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BookingService } from './booking.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
+import { GetVacanciesDto } from './dto/getVacanciesDto';
 
 @Controller('booking')
 export class BookingController {
@@ -15,6 +16,16 @@ export class BookingController {
   @Get()
   findAll() {
     return this.bookingService.findAll();
+  }
+
+  @Get('room/:roomId')
+  findAllByRoom(@Param('roomId') roomId: string) {
+    return this.bookingService.findAllByRoom(roomId);
+  }
+
+  @Get('room/vacancies')
+  findAllVacanciesByRoom(@Body() getVacanciesDTO: GetVacanciesDto) {
+    return this.bookingService.findAllVacanciesThisMonth;
   }
 
   @Get(':id')

@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Room } from "src/room/entities/room.entity";
 
-export class CreateBookingDto {
+export class GetVacanciesDto {
     
     @ApiProperty({default: new Date(), required: true})
   startDate: Date
