@@ -17,6 +17,11 @@ export class RoomController {
     return this.roomService.findAll();
   }
 
+  @Get('hotel/:id')
+  findAllByHotel(@Param('id') hotelId: string) {
+    return this.roomService.findAllByHotel(hotelId)
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.roomService.findOne(+id);

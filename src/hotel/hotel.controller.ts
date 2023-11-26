@@ -24,7 +24,7 @@ export class HotelController {
   
   @Get(':id')
   findOneWithRooms(@Param('id') id: string) {
-    return this.hotelService.findOneWithRooms(id);
+    return this.hotelService.findOne(id);
   }
 
   @Patch(':id')

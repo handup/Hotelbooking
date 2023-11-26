@@ -3,7 +3,7 @@ import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { Room } from './entities/room.entity';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Hotel } from 'src/hotel/entities/hotel.entity';
 
 @Injectable()
@@ -23,9 +23,10 @@ export class RoomService {
   }
 
   findAllByHotel(hotelId: string) {
-    return this.RoomModel.find({ hotel: {id: hotelId}}).exec();
+    const objectId = new Types.ObjectId(hotelId);
+    return this.RoomModel.find({ hotel: objectId }).exec();
   }
-
+  
   findOne(id: number) {
     return `This action returns a #${id} room`;
   }

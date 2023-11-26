@@ -1,25 +1,24 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 
 export type RoomDocument = HydratedDocument<Room>;
 
 @Schema()
 export class Room {
   @Prop()
-  beds: number;
-
-  //bedSpaces is the number of people the room can house
+  label: string;
   @Prop()
-  bedsSpaces: number;
-
+  adultGuests: number;
   @Prop()
-  rooms: number;
-  
+  childGuests: number;
   @Prop()
-  name: string;
-
+  infantGuests: number;
   @Prop()
-  hotel: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hotel' }]
+  description: string;
+  @Prop()
+  image: string;
+  @Prop({ type: Types.ObjectId, ref: 'Hotel' })
+  hotel: Types.ObjectId;
 }
 
 export const RoomSchema = SchemaFactory.createForClass(Room);

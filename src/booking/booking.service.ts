@@ -6,7 +6,7 @@ import { Model } from 'mongoose';
 import { Room } from 'src/room/entities/room.entity';
 import { InjectModel } from '@nestjs/mongoose';
 
-function dateDiffInDays(a, b) {
+function dateDiffInDays(a: Date, b: Date) {
   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
   // Discard the time and time-zone information.
   const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
@@ -24,13 +24,11 @@ export class BookingService {
   async create(createBookingDto: CreateBookingDto): Promise<Booking> {
     const parentRoom = this.RoomModel.findById(createBookingDto.roomId)
     createBookingDto.room = await parentRoom;
+    createBookingDto.startDate = new Date(createBookingDto.startDate);
+    createBookingDto.endDate = new Date(createBookingDto.endDate);
     if (createBookingDto.room) {
-      const vacancies = await this.findAllVacanciesThisMonth(createBookingDto.startDate, createBookingDto.roomId);
-      const freespace = vacancies.find((v) => v[0] < createBookingDto.startDate && createBookingDto.endDate < v[1])
-      if (freespace) {
-        const createdBooking = new this.BookingModel(createBookingDto);
-        return createdBooking.save();
-      } else throw new NotFoundException("room overbooked in period")
+      const createdBooking = new this.BookingModel(createBookingDto);
+      return createdBooking.save();
     } else throw new NotFoundException("No room found")
   }
 
@@ -46,7 +44,8 @@ export class BookingService {
     return this.BookingModel.find({ room: { id: roomId } }).exec();
   }
 
-  async findAllVacanciesThisMonth(date: Date, roomId: string) {
+  // Complete insanity does not currently work
+  async findAllVacanciesThisMonth(date: Date, roomId: string) : Promise<Date[][]> {
     const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1)
     const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const bookingDatesthisMonth = await this.BookingModel
@@ -61,9 +60,26 @@ export class BookingService {
       .then((bookings) => {
         return bookings.map((b) => [b.startDate, b.endDate])
       })
-    const gapsBetweenDates = bookingDatesthisMonth.reduce((a, b) => {
-      return [a[1], b[0]]
-    })
+      
+    if(!bookingDatesthisMonth.length) {
+      // I give up
+      return [[ new Date(-8640000000000000), 
+        new Date(8640000000000000)]]
+    }
+
+
+    let gapsBetweenDates = [] as Date[][]
+    
+    const firstBooking = bookingDatesthisMonth[0][0]
+    if(firstBooking > firstDayOfMonth) gapsBetweenDates.push([firstDayOfMonth, firstBooking])
+
+      for(let i = 1; i < bookingDatesthisMonth.length - 1; i++){
+        const current = bookingDatesthisMonth[i]
+        const next = bookingDatesthisMonth[i+1]
+        gapsBetweenDates.push([current[1], next[0]])
+    }
+    const lastBooking = bookingDatesthisMonth[bookingDatesthisMonth.length-1][1]
+    if(lastBooking < lastDayOfMonth) gapsBetweenDates.push([lastBooking, lastDayOfMonth])
     const gapsBiggerThanOneDay = gapsBetweenDates.filter(g => dateDiffInDays(g[0], g[1]) > 1)
     return gapsBiggerThanOneDay // [[date, date], [date, date]]
   }

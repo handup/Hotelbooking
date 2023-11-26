@@ -3,13 +3,13 @@ import { Hotel } from "src/hotel/entities/hotel.entity";
 
 export class CreateRoomDto {
     @ApiProperty({default: 1, required: false})
-    readonly beds: number;
+    readonly adultGuests: number;
     @ApiProperty({default: 1, required: false})
-    readonly bedsSpaces: number;
+    readonly childGuests: number;
     @ApiProperty({default: 1, required: false})
-    readonly rooms: number;
+    readonly infantGuests: number;
     @ApiProperty({default: "Steve", required: false})
-    readonly name: string;
+    readonly label: string;
     @ApiProperty({default: "Steve", required: false})
     readonly hotelId: string;
     hotel: Hotel;

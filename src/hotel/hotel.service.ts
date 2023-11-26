@@ -21,8 +21,8 @@ export class HotelService {
     return this.hotelModel.find({ city }).exec();
   }
 
-  async findOneWithRooms(id: string): Promise<Hotel> {
-    return this.hotelModel.findById(id).populate("rooms").exec();
+  async findOne(id: string): Promise<Hotel> {
+    return this.hotelModel.findById(id).exec();
   }
 
   update(id: number, updateHotelDto: UpdateHotelDto) {
