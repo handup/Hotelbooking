@@ -8,9 +8,10 @@ import { BookingModule } from './booking/booking.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 
+// node-network:27
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/test'),
+    MongooseModule.forRoot('mongodb://' + process.env.MONGODB_URL + '/test'),
     HotelModule,
     RoomModule,
     BookingModule,
