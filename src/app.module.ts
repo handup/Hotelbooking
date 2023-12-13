@@ -9,8 +9,15 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017/test'), HotelModule, RoomModule, BookingModule, AuthModule, UsersModule],
+  imports: [
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/test'),
+    HotelModule,
+    RoomModule,
+    BookingModule,
+    AuthModule,
+    UsersModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
