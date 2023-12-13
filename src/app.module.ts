@@ -12,15 +12,19 @@ import { ConfigModule } from '@nestjs/config';
 // node-network:27
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/test'),
+    MongooseModule.forRootAsync({
+      useFactory: () => ({
+        uri: 'mongodb://' + process.env.MONGODB_URL + '/test',
+      }),
+    }),
     HotelModule,
     RoomModule,
     BookingModule,
     AuthModule,
     UsersModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot()
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
