@@ -22,9 +22,9 @@ import { ConfigModule } from '@nestjs/config';
     BookingModule,
     AuthModule,
     UsersModule,
-    ConfigModule.forRoot()
+    ConfigModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
