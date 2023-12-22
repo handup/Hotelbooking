@@ -8,6 +8,7 @@ import { BookingModule } from './booking/booking.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import { RoomFeaturesModule } from './roomFeatures/room-features.module';
 
 // node-network:27
 @Module({
@@ -19,6 +20,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     HotelModule,
     RoomModule,
+    RoomFeaturesModule,
     BookingModule,
     AuthModule,
     UsersModule,

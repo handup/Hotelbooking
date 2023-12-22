@@ -11,7 +11,7 @@ export class RoomService {
   constructor(@InjectModel(Room.name) private RoomModel: Model<Room>,
   @InjectModel(Hotel.name) private HotelModel: Model<Hotel>) {}
 
-  async create(createRoomDto: CreateRoomDto): Promise<Room> {
+  async create(createRoomDto: CreateRoomDto): Promise<Room> { 
     const parentHotel = this.HotelModel.findById(createRoomDto.hotelId)
     createRoomDto.hotel = await parentHotel;
     const createdRoom = new this.RoomModel(createRoomDto);
