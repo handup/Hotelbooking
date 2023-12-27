@@ -15,7 +15,7 @@ export class Hotel {
   address: string;
 
   @Prop()
-  rooms:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }]
+  rooms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }]
 }
 
 export const HotelSchema = SchemaFactory.createForClass(Hotel);

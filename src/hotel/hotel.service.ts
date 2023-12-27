@@ -7,17 +7,17 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class HotelService {
-  constructor(@InjectModel(Hotel.name) private hotelModel: Model<Hotel>) {}
+  constructor(@InjectModel(Hotel.name) private hotelModel: Model<Hotel>) { }
 
   async create(createHotelDto: CreateHotelDto): Promise<Hotel> {
     const createdHotel = new this.hotelModel(createHotelDto);
     return createdHotel.save();
   }
 
-  async findAll() : Promise<Hotel[]> {
+  async findAll(): Promise<Hotel[]> {
     return this.hotelModel.find().exec();
   }
-  async findAllByCity(city: string) : Promise<Hotel[]> {
+  async findAllByCity(city: string): Promise<Hotel[]> {
     return this.hotelModel.find({ city }).exec();
   }
 
