@@ -26,10 +26,10 @@ export class HotelService {
   }
 
   update(id: string, updateHotelDto: UpdateHotelDto) {
-    return this.hotelModel.updateOne({ ...updateHotelDto, id })
+    return this.hotelModel.updateOne({ ...updateHotelDto, _id: id })
   }
 
   remove(id: string) {
-    return this.hotelModel.deleteOne({ id })
+    return this.hotelModel.deleteOne({ _id: id })
   }
 }
