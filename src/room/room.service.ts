@@ -9,7 +9,7 @@ import { Hotel } from 'src/hotel/entities/hotel.entity';
 @Injectable()
 export class RoomService {
   constructor(@InjectModel(Room.name) private RoomModel: Model<Room>,
-  @InjectModel(Hotel.name) private HotelModel: Model<Hotel>) {}
+    @InjectModel(Hotel.name) private HotelModel: Model<Hotel>) { }
 
   async create(createRoomDto: CreateRoomDto): Promise<Room> {
     const parentHotel = this.HotelModel.findById(createRoomDto.hotelId)
@@ -26,16 +26,16 @@ export class RoomService {
     const objectId = new Types.ObjectId(hotelId);
     return this.RoomModel.find({ hotel: objectId }).exec();
   }
-  
+
   findOne(id: number) {
     return `This action returns a #${id} room`;
   }
 
   update(id: number, updateRoomDto: UpdateRoomDto) {
-    return `This action updates a #${id} room`;
+    return this.RoomModel.updateOne(updateRoomDto)
   }
 
   remove(id: number) {
-    return `This action removes a #${id} room`;
+    return this.RoomModel.deleteOne({ id })
   }
 }
