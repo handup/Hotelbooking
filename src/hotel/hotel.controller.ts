@@ -5,7 +5,7 @@ import { UpdateHotelDto } from './dto/update-hotel.dto';
 
 @Controller('hotel')
 export class HotelController {
-  constructor(private readonly hotelService: HotelService) {}
+  constructor(private readonly hotelService: HotelService) { }
 
   @Post()
   create(@Body() createHotelDto: CreateHotelDto) {
@@ -21,7 +21,7 @@ export class HotelController {
   findAllByCity(@Param('city') city: string) {
     return this.hotelService.findAllByCity(city);
   }
-  
+
   @Get(':id')
   findOneWithRooms(@Param('id') id: string) {
     return this.hotelService.findOne(id);
@@ -29,11 +29,11 @@ export class HotelController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateHotelDto: UpdateHotelDto) {
-    return this.hotelService.update(+id, updateHotelDto);
+    return this.hotelService.update(id, updateHotelDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.hotelService.remove(+id);
+    return this.hotelService.remove(id);
   }
 }

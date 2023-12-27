@@ -25,11 +25,11 @@ export class HotelService {
     return this.hotelModel.findById(id).exec();
   }
 
-  update(id: number, updateHotelDto: UpdateHotelDto) {
-    return this.hotelModel.updateOne(updateHotelDto)
+  update(id: string, updateHotelDto: UpdateHotelDto) {
+    return this.hotelModel.updateOne({ ...updateHotelDto, id })
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.hotelModel.deleteOne({ id })
   }
 }
