@@ -15,6 +15,9 @@ export class Hotel {
   address: string;
 
   @Prop()
+  image: string;
+
+  @Prop()
   rooms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }]
 }
 
