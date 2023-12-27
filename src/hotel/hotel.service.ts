@@ -26,10 +26,10 @@ export class HotelService {
   }
 
   update(id: number, updateHotelDto: UpdateHotelDto) {
-    return `This action updates a #${id} hotel`;
+    return this.hotelModel.updateOne(updateHotelDto)
   }
 
   remove(id: number) {
-    return `This action removes a #${id} hotel`;
+    return this.hotelModel.deleteOne({ id })
   }
 }
