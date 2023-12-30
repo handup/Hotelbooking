@@ -2,8 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateRoomFeaturesDto {
   @ApiProperty({ default: "image", required: true })
-  img: string;
+  readonly img: string;
 
   @ApiProperty({ default: "Feature", required: true })
-  name: string;
+  readonly name: string;
 }

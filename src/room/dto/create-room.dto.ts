@@ -18,7 +18,7 @@ export class CreateRoomDto {
     readonly image: "image";
     @ApiProperty({ default: "Steve", required: false })
     readonly label: string;
-    @ApiProperty({ default: "Steve", required: false })
+    @ApiProperty({ default: "Steve", required: false }) 
     readonly hotelId: string;
     hotel: Hotel;
 }

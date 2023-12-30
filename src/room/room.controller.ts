@@ -14,7 +14,7 @@ export class RoomController {
 
   @Get()
   findAll() {
-    return this.roomService.findAll();
+    return this.roomService.findAll(); 
   }
 
   @Get('hotel/:id')
