@@ -32,7 +32,7 @@ export class RoomService {
   }
 
   update(id: number, updateRoomDto: UpdateRoomDto) {
-    return this.RoomModel.updateOne({ ...updateRoomDto, _id: id })
+    return this.RoomModel.updateOne({ _id: id }, { ...updateRoomDto })
   }
 
   remove(id: number) {
