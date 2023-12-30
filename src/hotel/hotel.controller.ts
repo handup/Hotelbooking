@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { HotelService } from './hotel.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
-import { LocalAuthGuard } from 'src/auth/local-auth-guard';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 
 @Controller('hotel')
