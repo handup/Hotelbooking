@@ -7,9 +7,18 @@ import { UpdateRoomFeatureDto } from './dto/update-room-feature.dto';
 export class RoomFeaturesController {
   constructor(private readonly roomFeaturesService: RoomFeaturesService) {}
 
-  @Post()
-   create(@Body() createRoomFeatureDto: CreateRoomFeaturesDto) {
-    return this.roomFeaturesService.create(createRoomFeatureDto);
+  // @Post()
+  //  create(@Body() createRoomFeatureDtoArray: CreateRoomFeaturesDto[]) {
+  //   return this.roomFeaturesService.createMultiple(createRoomFeatureDtoArray);
+  // }
+
+  @Post() // Define your route for creating multiple features
+  async createMultiple(@Body() createRoomFeatureDtoArray: CreateRoomFeaturesDto[]) {
+    const createdFeatures = await this.roomFeaturesService.createMultiple(createRoomFeatureDtoArray);
+    return {
+      message: 'Multiple room features created successfully',
+      data: createdFeatures,
+    };
   }
 
   @Get('all-room-features')

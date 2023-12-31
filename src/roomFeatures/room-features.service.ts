@@ -18,6 +18,11 @@ export class RoomFeaturesService {
     return await createdFeature.save();
   }
 
+  async createMultiple(createRoomFeatureDtoArray: CreateRoomFeaturesDto[]): Promise<RoomFeatures[]> {
+    const createdFeatures = await this.roomFeatureModel.create(createRoomFeatureDtoArray);
+    return createdFeatures;
+  }
+
   findAll() {
     return this.roomFeatureModel.find().exec();
   }
