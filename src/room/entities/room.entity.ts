@@ -19,6 +19,13 @@ export class Room {
   image: string;
   @Prop({ type: Types.ObjectId, ref: 'Hotel' })
   hotel: Types.ObjectId;
+  @Prop([
+    {
+      img: String,
+      name: String,
+    },
+  ])
+  roomFeatures: Array<{ img: string; name: string }>;
 }
 
 export const RoomSchema = SchemaFactory.createForClass(Room);

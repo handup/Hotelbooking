@@ -9,4 +9,4 @@ export class RoomFeatures {
   name: string;
 }
 
-export const RoomFeaturesSchema = SchemaFactory.createForClass(RoomFeatures);
+export const RoomFeaturesSchema = SchemaFactory.createForClass(RoomFeatures); 
