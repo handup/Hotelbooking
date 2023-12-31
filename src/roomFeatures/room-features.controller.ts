@@ -40,4 +40,13 @@ export class RoomFeaturesController {
   update(@Param('id') id: string, @Body() updateRoomFeatureDto: UpdateRoomFeatureDto) {
     return this.roomFeaturesService.update(id, updateRoomFeatureDto);
   }
+
+  @Delete('/all-room-features')
+  async deleteAllRoomFeatures() {
+    const deletedCount = await this.roomFeaturesService.deleteAll();
+    return {
+      message: `Deleted ${deletedCount} room features`,
+    };
+  }
+
 }

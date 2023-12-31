@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateRoomFeaturesDto } from './dto/create-room-feature.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -31,19 +31,13 @@ export class RoomFeaturesService {
   }
 
   update(id: string, updateRoomFeatureDto: UpdateRoomFeatureDto) {
-    // const roomFeature = this.roomFeatureModel.findById(id).exec();
-
-    // if (!roomFeature) {
-    //   throw new NotFoundException(`Room feature with id ${id} not found`);
-    // }
-
-    // if (updateRoomFeatureDto.name) {
-    //   roomFeature.name = updateRoomFeatureDto.name;
-    // }
-
-    return `This action updates a #${id} room-feature`;
-
+    return this.roomFeatureModel.updateOne({ ...updateRoomFeatureDto, _id: id })
   }
+
+  deleteAll() {
+    return this.roomFeatureModel.deleteMany({}).exec();;
+  }
+
 }
  
 
