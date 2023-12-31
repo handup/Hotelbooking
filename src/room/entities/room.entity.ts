@@ -16,6 +16,8 @@ export class Room {
   @Prop()
   description: string;
   @Prop()
+  price: number;
+  @Prop()
   image: string;
   @Prop({ type: Types.ObjectId, ref: 'Hotel' })
   hotel: Types.ObjectId;
