@@ -29,15 +29,15 @@ export class RoomService {
     return this.RoomModel.find({ hotel: objectId }).exec();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} room`;
   }
 
-  update(id: number, updateRoomDto: UpdateRoomDto) {
-    return this.RoomModel.updateOne({ ...updateRoomDto, _id: id })
+  update(id: string, updateRoomDto: UpdateRoomDto) {
+    return this.RoomModel.updateOne({ _id: id }, { ...updateRoomDto })
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.RoomModel.deleteOne({ _id: id })
   }
 
