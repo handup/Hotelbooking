@@ -3,7 +3,7 @@ import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
 import { Booking } from './entities/booking.entity';
 import { Model } from 'mongoose';
-import { Room } from 'src/room/entities/room.entity';
+import { Room } from '../room/entities/room.entity';
 import { InjectModel } from '@nestjs/mongoose';
 
 function dateDiffInDays(a: Date, b: Date) {

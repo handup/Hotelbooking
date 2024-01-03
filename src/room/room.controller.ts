@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { RoomService } from './room.service';
 import { CreateRoomDto, RoomFeatureDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
+import { JwtAuthGuard } from '../auth/jwt-auth-guard';
 
 @Controller('room')
 export class RoomController {

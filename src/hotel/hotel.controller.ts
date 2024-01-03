@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, NotFoundException } from '@nestjs/common';
 import { HotelService } from './hotel.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
+import { JwtAuthGuard } from '../auth/jwt-auth-guard';
 
 @Controller('hotel')
 export class HotelController {
@@ -20,7 +20,7 @@ export class HotelController {
     return this.hotelService.findAll();
   }
 
-  @Get('bycity/:city')
+  @Get('bycity/:city') 
   findAllByCity(@Param('city') city: string) {
     return this.hotelService.findAllByCity(city);
   }
@@ -29,6 +29,15 @@ export class HotelController {
   findOneWithRooms(@Param('id') id: string) {
     return this.hotelService.findOne(id);
   }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+  const hotel = await this.hotelService.findOne(id);
+  if (!hotel) {
+    throw new NotFoundException('Hotel not found');
+  }
+  return hotel;
+}
 
   @UseGuards(JwtAuthGuard)
   @Patch(':id')

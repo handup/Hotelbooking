@@ -4,7 +4,7 @@ import { UpdateRoomDto } from './dto/update-room.dto';
 import { Room } from './entities/room.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Hotel } from 'src/hotel/entities/hotel.entity';
+import { Hotel } from '../hotel/entities/hotel.entity';
 
 @Injectable()
 export class RoomService {

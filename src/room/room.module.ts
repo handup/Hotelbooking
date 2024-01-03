@@ -3,7 +3,7 @@ import { RoomService } from './room.service';
 import { RoomController } from './room.controller';
 import { Room, RoomSchema } from './entities/room.entity';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Hotel, HotelSchema } from 'src/hotel/entities/hotel.entity';
+import { Hotel, HotelSchema } from '../hotel/entities/hotel.entity';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Room.name, schema: RoomSchema }]),

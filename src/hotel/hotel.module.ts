@@ -9,4 +9,4 @@ import { Hotel, HotelSchema } from './entities/hotel.entity';
   controllers: [HotelController],
   providers: [HotelService]
 })
-export class HotelModule {}
+export class HotelModule {} 
