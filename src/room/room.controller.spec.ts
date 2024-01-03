@@ -35,7 +35,6 @@ describe('RoomController (e2e)', () => {
     
 
     hotelId = response.body._id;
-    console.log(hotelId);
   });
 
   describe('GET /room', () => {
@@ -68,10 +67,10 @@ describe('RoomController (e2e)', () => {
                 "name": "Test Name"
               }
             ]
-          }
+    }
       
   
-      const response = await request(app.getHttpServer())
+    const response = await request(app.getHttpServer())
         .post('/room')
         .set('Authorization', `Bearer ${authToken}`)
         .send(createRoomDto);
@@ -97,7 +96,25 @@ describe('RoomController (e2e)', () => {
       
          expect(response.status).toBe(200);
         });
-      });
+    });
+
+    // it('should add features to a room', async () => {
+    //     const roomFeatures = [
+    //         {
+    //           "img": "Test Image2",
+    //           "name": "Test Name2"
+    //         }
+    //     ];
+        
+    //     console.log(roomId);
+      
+    //     const response = await request(app.getHttpServer())
+    //       .post(`/room/${roomId}/add-features`)
+    //       .set('Authorization', `Bearer ${authToken}`)
+    //       .send(roomFeatures);
+      
+    //     expect(response.status).toBe(200);
+    // });  
 
 
     it('should delete a room', async () => {
@@ -108,20 +125,6 @@ describe('RoomController (e2e)', () => {
         expect(response.status).toBe(200);
      });
 
-    //  it('should add features to a room', async () => {
-    //     const roomFeatures = 
-    //         {
-    //             "img": "Test Image2",
-    //             "name": "Test Name2"
-    //         }
-        
-      
-    //     const response = await request(app.getHttpServer())
-    //       .post(`/room/${roomId}/add-features`)
-    //       .set('Authorization', `Bearer ${authToken}`)
-    //       .send(roomFeatures);
-      
-    //     expect(response.status).toBe(200);
-    //   });
+     
 
 });
