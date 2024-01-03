@@ -3,9 +3,8 @@ import { Room } from "src/room/entities/room.entity";
 
 export class CreateBookingDto {
     
-    @ApiProperty({default: new Date(), required: true})
+  @ApiProperty({default: new Date(), required: true})
   startDate: Date
-
   
   @ApiProperty({default: new Date(), required: true})
   endDate: Date;

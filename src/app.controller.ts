@@ -11,7 +11,7 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('/login')
   async login(@Request() req) {
-    var token = await this.authService.login(req.user)
+    var token = await this.authService.login(req.user._doc)
     var currentUser = await this.userService.findOne(req.user._doc.username)
     return { token, user: currentUser };
   }

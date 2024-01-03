@@ -4,6 +4,11 @@ import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
 import { GetVacanciesDto } from './dto/getVacanciesDto';
 
+type findAllVacanciesByRoomDTO = {
+  startDate: Date;
+  hotelId: string;
+}
+
 @Controller('booking')
 export class BookingController {
   constructor(private readonly bookingService: BookingService) {}
@@ -23,9 +28,11 @@ export class BookingController {
     return this.bookingService.findAllByRoom(roomId);
   }
 
-  @Get('room/vacancies')
-  findAllVacanciesByRoom(@Body() getVacanciesDTO: GetVacanciesDto) {
-    return this.bookingService.findAllVacanciesThisMonth;
+
+
+  @Post('room/vacancies')
+  findAllVacanciesByRoom(@Body() inputDTO :findAllVacanciesByRoomDTO) {
+    return this.bookingService.findAllByHotel(new Date(inputDTO.startDate), inputDTO.hotelId);
   }
 
   @Get(':id')
