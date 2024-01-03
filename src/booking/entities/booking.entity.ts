@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
+import { Room } from 'src/room/entities/room.entity';
 
 export type BookingDocument = HydratedDocument<Booking>;
 
@@ -16,8 +17,8 @@ export class Booking {
   @Prop()
   userId: string;
 
-  @Prop()
-  room: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }]
+  @Prop({type: Room})
+  room: { type: mongoose.Schema.Types.ObjectId, ref: 'Room' }
 }
 
 
