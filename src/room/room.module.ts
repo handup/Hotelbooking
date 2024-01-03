@@ -9,6 +9,6 @@ import { Hotel, HotelSchema } from 'src/hotel/entities/hotel.entity';
   imports: [MongooseModule.forFeature([{ name: Room.name, schema: RoomSchema }]),
   MongooseModule.forFeature([{ name: Hotel.name, schema: HotelSchema }])],
   controllers: [RoomController],
-  providers: [RoomService],
+  providers: [RoomService], 
 })
 export class RoomModule { }
