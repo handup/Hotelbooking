@@ -15,7 +15,7 @@ import { RoomFeaturesModule } from './roomFeatures/room-features.module';
   imports: [
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: 'mongodb://' + process.env.MONGODB_URL + '/test',
+        uri: process.env.MONGODB_URL,
       }),
     }),
     HotelModule,
